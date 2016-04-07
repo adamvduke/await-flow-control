@@ -15,6 +15,8 @@ Run the demo client:
 go run client.go -cert cert.pem -key key.pem
 ```
 
+The client program will send an additional 2000 requests for each line read from stdin.
+
 Visit http://localhost:6060/debug/pprof/goroutine?debug=1 in your browser. There should be some number of goroutines with a stack trace
 similar to:
 

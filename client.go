@@ -42,6 +42,16 @@ func main() {
 		TLSClientConfig: tlsConfig,
 	}
 	HTTPClient := &http.Client{Transport: transport}
+
+	makeRequests(HTTPClient, host)
+	var userInput string
+	for {
+		fmt.Scanln(&userInput)
+		makeRequests(HTTPClient, host)
+	}
+}
+
+func makeRequests(HTTPClient *http.Client, host *string) {
 	for i := 0; i < 2000; i++ {
 		go func() {
 			payload := []byte("test test test test test test test test test test test test test test test test test test test test test test test test")
@@ -66,6 +76,4 @@ func main() {
 			fmt.Println(res.Proto, response.Message, time.Now().Format(time.RubyDate))
 		}()
 	}
-	// block forever so you can checkout http://localhost:6060/debug/pprof/goroutine?debug=1
-	<-make(chan bool)
 }
